@@ -12,9 +12,3 @@ Quick start
    `python scripts/build_marts.py --db-path data/cc_data.db --sql sql/marts.sql`
 5. Run model training (basic example):
    `python scripts/train_model.py --db-path data/cc_data.db --out models/model.joblib`
-
-Notes
-- This repository is a scaffold implementing the ImplementationPlan_doc.docx.
-- It uses a lightweight SQLite warehouse so you can run everything locally.
-
-See the `notebooks/` folder for analysis instructions and next steps.
