@@ -1,0 +1,8 @@
+__pycache__/
+data/
+*.db
+models/
+exports/
+*.pyc
+.ipynb_checkpoints/
+.env
