@@ -1,38 +1,26 @@
 # Loan Collections Recovery Engine
 
-Suggested GitHub repo name: `loan-collections-recovery-engine`
-
 PostgreSQL, SQL, and Python project for prioritizing overdue loan accounts and estimating recovery likelihood.
 
-This repository turns the Home Credit Default Risk dataset into a collections-style warehouse and scoring pipeline. The goal is to identify overdue accounts, estimate repayment likelihood, rank cases by expected value, and generate outputs that feel like a real collections operations workflow.
+This repository turns the Home Credit Default Risk dataset into a collections-style warehouse and scoring pipeline. The goal is to identify overdue accounts, estimate repayment likelihood, rank cases by expected value, and generate analytical outputs from SQL and Python.
 
-## Project Goal
+## Project Overview
 
-The project is designed to answer a simple business question: which overdue accounts should be contacted first to maximize expected recovery?
+The project answers a simple collections question: which overdue accounts should be contacted first to maximize expected recovery?
 
-To answer that, the pipeline combines:
+To support that, the pipeline includes:
 
 - SQL warehouse design
 - delinquency and bureau feature engineering
 - account prioritization logic
 - supervised learning for recovery propensity
-- dashboard-ready exports for collections teams
-
-## What The Pipeline Does
-
-1. Loads the Kaggle Home Credit CSV files into staging tables.
-2. Builds dimensions, facts, marts, and quality-check views in SQL.
-3. Engineers delinquency, bureau, installment, and prior-loan features.
-4. Creates a proxy recovery label from payment-delay and cure behavior.
-5. Trains a baseline model and a stronger boosted model.
-6. Scores accounts into a ranked collections queue.
-7. Exports dashboard-ready tables for Power BI.
+- dashboard-ready exports
 
 ## Dataset
 
 Source dataset: Home Credit Default Risk from Kaggle.
 
-This dataset is a good fit because it includes several related tables rather than a single flat file. That lets the project demonstrate real warehouse thinking and SQL-heavy feature engineering.
+The dataset is useful because it contains several related tables instead of a single flat file. That makes it possible to demonstrate warehouse design, joins, window functions, and model-ready feature building.
 
 Main tables used:
 
@@ -42,7 +30,7 @@ Main tables used:
 - `installments_payments` for repayment timing and delinquency patterns
 - `pos_cash_balance` and `credit_card_balance` for monthly account behavior
 
-The project does not use a native collections outcome because the dataset does not provide one. Instead, it builds a proxy recovery label based on delinquency severity and cure behavior.
+The project uses a proxy recovery label because the dataset does not include a native collections outcome. The label is derived from delinquency severity and cure behavior.
 
 ## Technical Approach
 
@@ -68,21 +56,8 @@ The modeling layer uses:
 - feature engineering for delinquency, bureau stress, and payment behavior
 - data validation and referential-integrity checks
 - model ranking and account prioritization
-- reproducible local environment setup with conda
 - PostgreSQL connectivity through SQLAlchemy
 - pandas, scikit-learn, LightGBM, and joblib
-
-## Why This Is Recruiter-Friendly
-
-This project is useful for resumes because it shows full-stack analytical thinking:
-
-- data ingestion and warehouse design
-- SQL feature engineering
-- model training and evaluation
-- business-oriented prioritization logic
-- dashboard-ready outputs for operations teams
-
-It is closer to a real credit or collections workflow than a generic churn model, so it is easier to explain in interviews and more relevant for fintech, banking, risk, and analytics roles.
 
 ## Main Outputs
 
@@ -118,18 +93,6 @@ It is closer to a real credit or collections workflow than a generic churn model
    `python scripts\validate_pipeline.py --db-url %CC_DATABASE_URL% --model-path models\model.joblib --require-scored-table`
 6. Export dashboard-ready CSVs:
    `python scripts\export_dashboard_data.py --db-url %CC_DATABASE_URL% --export-dir exports`
-
-## Expected Outcome
-
-After running the full pipeline, you get a SQL-first collections analytics system that:
-
-- ranks accounts by collection priority
-- estimates recovery propensity
-- supports simple operational reporting
-- demonstrates SQL, Python, ML, and warehouse design skills
-- is strong enough to include in a GitHub portfolio and resume
-
-If you want an even shorter repo name, `collections-recovery-engine` also works well.
 
 ## Repository Notes
 
