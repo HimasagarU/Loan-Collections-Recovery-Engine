@@ -6,3 +6,4 @@ exports/
 *.pyc
 .ipynb_checkpoints/
 .env
+ImplementationPlan_doc.docx
